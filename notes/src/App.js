@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from "react"
 import Item from "./Item"
+import InputVal from "./InputVal"
 import "./app.css"
 
 class App extends Component {
@@ -8,9 +9,9 @@ class App extends Component {
     this.state = {
       inputValue: "",
       list: []
-    }
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.handleBtnClick = this.handleBtnClick.bind(this)
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleBtnClick = this.handleBtnClick.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this)
   }
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           />
           <button onClick={this.handleBtnClick}>提交</button>
         </div>
+        本次内容：<InputVal value={this.state.inputValue} />
         <ul>
           { this.getListItem() }
         </ul>

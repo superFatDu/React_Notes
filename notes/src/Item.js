@@ -28,8 +28,8 @@ Item.propTypes = {
   content: PropTypes.string,
   handleItemDelete: PropTypes.func,
   index: PropTypes.number
-}
+};
 Item.defaultProps = {
   test: "hello world"
-}
+};
 export default Item;
