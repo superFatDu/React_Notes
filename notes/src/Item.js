@@ -11,7 +11,6 @@ class Item extends Component {
     return (
       <li
         onClick={this.handleClick}
-        dangerouslySetInnerHTML={dangerouslySetInnerHTML}
       >
         { test }-{ content }
       </li>
