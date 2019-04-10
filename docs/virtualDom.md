@@ -65,3 +65,21 @@ React.createElement("div", {class: "real-div"}, React.createElement("span", {}, 
 ![domKey](./img/domKey.png)
 
 - 节点比较时，我们通过key来比较。所以key的值我们希望在diff时保持不变，也就有了我们不建议循环时的key值用index，因为如果进行了remove等操作后，以前value对应的key会改变，在做diff算法时很消耗性能。
+
+### 2.3 setState
+
+- 由于setState是一个异步函数，如果用ref操作DOM可能会出现错误，比如节点长度少一个等。
+
+#### 2.3.1 解决
+
+- setState(() => {}, () => {})
+
+```js
+// 提供了第二个参数，完成后的回调
+this.setState(() => {
+    // 修改state
+}, () => {
+    // 异步操作完成后的回调
+    // TODO
+})
+```
