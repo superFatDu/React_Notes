@@ -38,7 +38,7 @@ class App extends Component {
     //   inputValue: e.target.value
     // })
     let val = e.target.value;
-    this.setState(() => ({ inputValue: val }));
+    this.setState(() => ({ inputValue: val.trim() }));
   }
   handleBtnClick() {
     if(!this.state.inputValue) return;
@@ -67,20 +67,19 @@ class App extends Component {
   getListItem() {
     return this.state.list.map((item, index) => {
       return (
-        <div key={index}>
-          <Item
-            content={item}
-            index={index}
-            handleItemDelete={this.handleItemDelete}
-          />
-          {/*<li
-            key={index}
-            onClick={this.handleItemDelete.bind(this, index)}
-            dangerouslySetInnerHTML={{__html: item}}
-          >
-          </li>*/}
-        </div>
+        <Item
+          key={index}
+          content={item}
+          index={index}
+          handleItemDelete={this.handleItemDelete}
+        />
       )
+      // <li
+      //   key={index}
+      //   onClick={this.handleItemDelete.bind(this, index)}
+      //   dangerouslySetInnerHTML={{__html: item}}
+      // >
+      // </li>
     })
   }
 }

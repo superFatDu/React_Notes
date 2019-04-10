@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types"
 
 class Item extends Component {
   constructor(props) {
@@ -6,13 +7,14 @@ class Item extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   render() {
-    let { content } = this.props;
+    let { content, test, dangerouslySetInnerHTML } = this.props;
     return (
-      <div
+      <li
         onClick={this.handleClick}
+        dangerouslySetInnerHTML={dangerouslySetInnerHTML}
       >
-        { content }
-      </div>
+        { test }-{ content }
+      </li>
     )
   }
   handleClick() {
@@ -22,5 +24,13 @@ class Item extends Component {
     handleItemDelete(index);
   }
 }
-
+Item.propTypes = {
+  test: PropTypes.string.isRequired,
+  content: PropTypes.string,
+  handleItemDelete: PropTypes.func,
+  index: PropTypes.number
+}
+Item.defaultProps = {
+  test: "hello world"
+}
 export default Item;
