@@ -7,7 +7,7 @@ class Item extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   render() {
-    let { content, test, dangerouslySetInnerHTML } = this.props;
+    let { content, test } = this.props;
     return (
       <li
         onClick={this.handleClick}
