@@ -1,32 +1,48 @@
 import React, { Component } from "react";
-import { Input, Button, List } from "antd";
-import "antd/dist/antd.css";
-
-const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
-];
+import store from './store';
+import TodoListUI from "./TodoListUI";
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from "./store/actionCreators";
 
 class TodoList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = store.getState();
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleStoreChange = this.handleStoreChange.bind(this);
+    this.handleBtnClick = this.handleBtnClick.bind(this);
+    this.handleItemDelete = this.handleItemDelete.bind(this);
+    store.subscribe(this.handleStoreChange);
+  }
   render() {
     return (
-      <div style={{marginLeft: 10, marginTop: 10}}>
-        <div>
-          <Input placeholder="hello world" style={{width: 300, marginRight: 10}} />
-          <Button type="primary">提交</Button>
-        </div>
-        <List
-          style={{marginTop: 10, width: 300}}
-          bordered
-          dataSource={data}
-          renderItem={item => (<List.Item>{item}</List.Item>)}
-        />
-      </div>
-    )
+      <TodoListUI
+        inputValue={this.state.inputValue} 
+        list={this.state.list}
+        handleInputChange={this.handleInputChange}
+        handleBtnClick={this.handleBtnClick}
+        handleItemDelete={this.handleItemDelete}
+      />
+    ) 
   }
-}
+  handleInputChange(e) {
+    // const action = {
+    //   type: CHANGE_INPUT_VALUE,
+    //   value: e.target.value
+    // };
+    const action = getInputChangeAction(e.target.value)
+    store.dispatch(action);
+  }
+  handleStoreChange() {
+    this.setState(store.getState());
+  }
+  handleBtnClick() {
+    const action = getAddItemAction();
+    store.dispatch(action);
+  }
+  handleItemDelete(index) {
+    const action = getDeleteItemAction(index);
+    store.dispatch(action);
+  }
+} 
 
 export default TodoList;
