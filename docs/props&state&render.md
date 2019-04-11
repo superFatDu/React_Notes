@@ -1,3 +1,8 @@
+# props&state&render
+
+<!-- ![relatiion](./img/attributeRelation.jpg) -->
+
+```js
 import React, { Component } from 'react'
 import PropTypes from "prop-types"
 
@@ -17,8 +22,6 @@ class Item extends Component {
     )
   }
   handleClick() {
-    // console.log(this.props.index);
-    // this.props.handleItemDelete(this.props.index)
     let { handleItemDelete, index } = this.props;
     handleItemDelete(index);
   }
@@ -33,3 +36,6 @@ Item.defaultProps = {
   test: "hello world"
 }
 export default Item;
+```
+
+> 当组件的state或者props发生改变的时候，render函数就回重新执行。
