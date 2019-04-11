@@ -5,8 +5,18 @@ class Item extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    console.log("item init");
   }
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    if (nextProps.content !== this.props.content) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
+    console.log("item render");
     let { content, test } = this.props;
     return (
       <li

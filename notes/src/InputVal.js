@@ -1,11 +1,15 @@
 import React, { Component } from "react"
 
 class InputVal extends Component {
-    render() {
-        return (
-            <span>{this.props.value}</span>
-        )
-    }
+  constructor(props) {
+    super(props);
+    console.log("inputBase init");
+  }
+  render() {
+    return (
+      <span>{this.props.value}</span>
+    )
+  }
 }
 
 export default InputVal;

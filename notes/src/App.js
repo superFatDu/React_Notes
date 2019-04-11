@@ -8,13 +8,19 @@ class App extends Component {
     super(props);
     this.state = {
       inputValue: "",
-      list: []
+      list: ["default"]
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleBtnClick = this.handleBtnClick.bind(this);
-    this.handleItemDelete = this.handleItemDelete.bind(this)
+    this.handleItemDelete = this.handleItemDelete.bind(this);
+    console.log("super init");
+  }
+  static getDerivedStateFromProps(props, state) {
+    console.log(`${JSON.stringify(props)}-${JSON.stringify(state)}`); // {}-{"inputValue":"","list":["default"]}
+    return state; // 如果返回null则不更新state
   }
   render() {
+    console.log("superRender");
     return (
       <Fragment>
         <div>
@@ -83,6 +89,9 @@ class App extends Component {
       // >
       // </li>
     })
+  }
+  componentDidMount() {
+    console.log("mounted");
   }
 }
 export default App;
