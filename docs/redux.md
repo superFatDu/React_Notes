@@ -87,3 +87,21 @@ import reducer from "./reducer.js";
 let store = createStore(reducer);
 export default store;
 ```
+
+## 1.4 application
+
+### 1.4.1 code 
+
+```js
+import { getAddItemAction } from "./actionCreators.js";
+import store from "./store";
+
+const action = getAddItemAction(value);
+store.dispatch(action);
+```
+
+### 1.4.2 monitor
+
+```js
+store.subscribe(this.setState(store.getState()));
+```
