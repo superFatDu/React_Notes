@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import store from './store';
 import TodoListUI from "./TodoListUI";
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getInitList } from "./store/actionCreators";
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getDefaultList } from "./store/actionCreators";
 
 class TodoList extends Component {
   constructor(props) {
@@ -26,14 +25,8 @@ class TodoList extends Component {
     ) 
   }
   componentDidMount() {
-    // React下mock数据需要把数据放在public目录下
-    axios.get("/mock/mock.json").then(res => {
-      let data = res.data;
-      const action = getInitList(data);
-      store.dispatch(action);
-    }).catch(err => {
-      console.log(err);
-    })
+    const action = getDefaultList();
+    store.dispatch(action);
   }
 
   handleInputChange(e) {
@@ -52,7 +45,6 @@ class TodoList extends Component {
     store.dispatch(action);
   }
   handleItemDelete(index) {
-    debugger
     const action = getDeleteItemAction(index);
     store.dispatch(action);
   }
