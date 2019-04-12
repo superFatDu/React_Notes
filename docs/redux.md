@@ -100,7 +100,7 @@ const action = getAddItemAction(value);
 store.dispatch(action);
 ```
 
-### 1.4.2 monitor
+### 1.4.2 sbuscribe 手动监控
 
 ```js
 store.subscribe(this.setState(store.getState()));
