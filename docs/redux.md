@@ -105,3 +105,45 @@ store.dispatch(action);
 ```js
 store.subscribe(this.setState(store.getState()));
 ```
+
+## redux middleware
+
+![middleware](./img/middleware.png)
+
+- 其实middleware就是对dispatch方法的一个封装。
+
+### 1.1 redux-thunk
+
+- 异步调用时使用，将异步的代码都放到了action中做处理。
+
+```js
+// index.js
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import reducer from "./reducer.js";
+
+const store  = createStore(reducer, applyMiddleware(thunk));
+
+export default store;
+```
+
+```js
+// actionCreators.js
+// 这里时异步请求
+export const getList = () => {
+  return (dispatch) => {
+    // React下mock数据需要把数据放在public目录下
+    axios.get("/mock/mock.json").then(res => {
+      let data = res.data;
+      const action = getInitList(data);
+      dispatch(action);
+    })
+  }
+}
+
+// 然后调用
+```
+
+### 1.2 redux-saga
+
+- 查阅GitHub
